@@ -12,17 +12,21 @@ namespace WeatherApp.App_Code
     {
         static string apiKey = "pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1";
         static string city = "Blairs";
-        static string locationUrl = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q=blairs";
+        
         static string fiveDayForecastUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
         static string currentConditionsUrl = "http://dataservice.accuweather.com/currentconditions/v1/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
         static string twelveHourForecastUrl = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
 
 
-        public JArray parseLocation() {
+        public JArray parseLocation(String locationName) {
+
             WebClient client = new WebClient();
+            string locationUrl = "http://dataservice.accuweather.com/locations/v1/cities/search?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q=" + locationName;
             string locationData = client.DownloadString(locationUrl);
 
             JArray location = JArray.Parse(locationData);
+            //string temp = location[1]["PrimaryPostalCode"].ToString();
+
             return location;
         }        
 
