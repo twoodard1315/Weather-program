@@ -14,10 +14,11 @@ namespace WeatherApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            jsonParse test = new jsonParse();
+            DropDownListState.Items.Add("State");
+            DropDownListZip.Items.Add("Zipcode");
+            //jsonParse test = new jsonParse();
             //Response.Write(test.parseLocation());
-            Response.Write(test.parseFiveDay());
+            //Response.Write(test.parseFiveDay());
             //Response.Write(test.parseDaily());
             //Response.Write(test.parseCurrent());
             //Response.Write(test.parseTwelve());
@@ -26,6 +27,8 @@ namespace WeatherApp
 
         protected void ButtonGo_Click(object sender, EventArgs e)
         {
+            DropDownListState.Items.Clear();
+            DropDownListZip.Items.Clear();
             jsonParse test = new jsonParse();
             JArray tempArr = test.parseLocation(TextBoxIn.Text);
             //Response.Write(test.parseLocation(TextBoxIn.Text));
@@ -41,6 +44,18 @@ namespace WeatherApp
                 DropDownListZip.Items.Add(tempArr[i]["PrimaryPostalCode"].ToString());
             }
             //LabelOut.Text = tempList.ToString();
+
+
+        }
+
+        protected void ButtonGo2_Click(object sender, EventArgs e)
+        {
+            jsonParse jp = new jsonParse();
+            string zip = DropDownListZip.SelectedItem.Text;
+            switch(zip)
+            {
+                //case :
+            }
         }
     }
 }

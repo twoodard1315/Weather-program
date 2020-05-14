@@ -9,7 +9,7 @@
    
     <div id="input">
         <asp:Label ID="LabelIn" runat="server" Text="Enter City Name: "></asp:Label>
-        <asp:TextBox ID="TextBoxIn" runat="server"></asp:TextBox>
+        <asp:TextBox ID="TextBoxIn" runat="server"></asp:TextBox><br />
         <asp:Button ID="ButtonGo" runat="server" Text="Go" OnClick="ButtonGo_Click" />
     </div>
     
@@ -20,11 +20,8 @@
         <asp:DropDownList ID="DropDownListState" runat="server">
         </asp:DropDownList>
         <asp:DropDownList ID="DropDownListZip" runat="server">
-        </asp:DropDownList>
-    </div>
-    
-
-
-   
+        </asp:DropDownList><br />
+        <asp:Button ID="ButtonGo2" runat="server" Text="Go" OnClick="ButtonGo2_Click" />
+    </div>   
 
 </asp:Content>

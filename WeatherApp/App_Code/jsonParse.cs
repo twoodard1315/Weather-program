@@ -11,13 +11,13 @@ namespace WeatherApp.App_Code
     public class jsonParse
     {
         static string apiKey = "pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1";
-        static string city = "Blairs";
-        
-        static string fiveDayForecastUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
-        static string currentConditionsUrl = "http://dataservice.accuweather.com/currentconditions/v1/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
-        static string twelveHourForecastUrl = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
-        static string dailyForecastUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
+        static string city = "Blairs"; 
 
+        public string getLocationKey()
+        {
+            string key = string.Empty;
+            return key;
+        }
 
         public JArray parseLocation(String locationName) {
 
@@ -31,30 +31,33 @@ namespace WeatherApp.App_Code
             return location;
         }        
 
-        public string parseFiveDay()
+        public JObject parseFiveDay()
         {
+            string fiveDayForecastUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/5day/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
             WebClient client = new WebClient();
             string fiveDayData = client.DownloadString(fiveDayForecastUrl);
 
             JObject fiveDay = JObject.Parse(fiveDayData);
-            string temp = fiveDay["DailyForecasts"][0].ToString();
-            return temp;
+            //string temp = fiveDay["DailyForecasts"][0].ToString();
+            return fiveDay;
         }
 
-        public string parseCurrent()
+        public JArray parseCurrent()
         {
+            string currentConditionsUrl = "http://dataservice.accuweather.com/currentconditions/v1/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
             string temp = String.Empty;
             WebClient client = new WebClient();
             string currentData = client.DownloadString(currentConditionsUrl);
 
             JArray current = JArray.Parse(currentData);
-            temp = current[0]["Temperature"]["Imperial"]["Value"].ToString();
-            return temp;
+            //temp = current[0]["Temperature"]["Imperial"]["Value"].ToString();
+            return current;
             //return current["Weather Text"];
         }
 
         public JArray parseTwelve()
         {
+            string twelveHourForecastUrl = "http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
             WebClient client = new WebClient();
             string twelveData = client.DownloadString(twelveHourForecastUrl);
 
@@ -64,6 +67,7 @@ namespace WeatherApp.App_Code
 
         public JObject parseDaily()
         {
+            string dailyForecastUrl = "http://dataservice.accuweather.com/forecasts/v1/daily/1day/2219475?apikey=pJF9LbDmPs9nMLRW0s09t1OxQTGgowa1&q";
             WebClient client = new WebClient();
             string dailyData = client.DownloadString(dailyForecastUrl);
 
